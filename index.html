@@ -254,6 +254,7 @@
           }, 1000);
         }
       });
+      conclusion();
     }
 
     function nextQuestion() {
@@ -283,6 +284,7 @@
           selectedOption.checked = false;
           if (currentQuestion < globalQuizData.question.length) {
             nextQuestion();
+            // conclusion();
           } else {
             document.getElementById('option1').disabled = true;
             document.getElementById('option2').disabled = true;
@@ -294,7 +296,7 @@
       }
     }
 
-    function conclusion(score) {
+    function conclusion() {
       console.log("Finished");
       console.log("total: " + score);
 
@@ -369,15 +371,13 @@
       let title_flag = false;
       console.log(globalQuizData.career[0].range);
 
-      if (score >= globalQuizData.career[0].range)
-
-        for (let i = 0; i < globalQuizData.career.length; i++) {
-          if (score >= globalQuizData.career[i].range[0] && score <= globalQuizData.career[i].range[1]) {
-            document.getElementById("results-title").innerHTML = globalQuizData.career[i].title;
-            document.getElementById("results-desc").innerHTML = globalQuizData.career[i].description;
-            title_flag = true;
-          }
+      for (let i = 0; i < globalQuizData.career.length; i++) {
+        if (score >= globalQuizData.career[i].range[0] && score <= globalQuizData.career[i].range[1]) {
+          document.getElementById("results-title").innerHTML = globalQuizData.career[i].title;
+          document.getElementById("results-desc").innerHTML = globalQuizData.career[i].description;
+          title_flag = true;
         }
+      }
 
       if (title_flag == false) {
         document.getElementById("results-desc").innerHTML = "Please Try Again!";
