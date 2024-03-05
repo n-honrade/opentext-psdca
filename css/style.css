@@ -1,0 +1,144 @@
+:root {
+    --bs-btn-active-border-color: #0d6efd;
+}
+
+html[data-bs-theme="light"] body {
+    background: rgb(0, 255, 154);
+    background: linear-gradient(50deg, rgba(0, 255, 154, 1) 0%, rgba(3, 194, 244, 1) 100%);
+}
+
+html[data-bs-theme="dark"] body {
+    background: rgb(13, 71, 161);
+    background: linear-gradient(50deg, rgba(13, 71, 161, 1) 0%, rgba(49, 27, 146, 1) 100%);
+}
+
+#canvas {
+    position: fixed;
+    z-index: -1;
+}
+
+#question {
+    font-family: 'Consolas', sans-serif;
+}
+
+.page-wrapper {
+    z-index: 10;
+}
+
+
+
+.options {
+    height: 150px;
+    width: 200px;
+    box-shadow: var(--bs-box-shadow);
+}
+
+.options:hover {
+    box-shadow: var(--bs-box-shadow-sm);
+}
+
+.options svg {
+    height: 50px;
+    width: 50px;
+}
+
+.options .bi-emoji-neutral-fill,
+.options .bi-emoji-neutral {
+    color: #2196F3;
+}
+
+.options .bi-emoji-frown-fill,
+.options .bi-emoji-frown {
+    color: #F44336
+}
+
+.options .bi-emoji-smile-fill,
+.options .bi-emoji-smile {
+    color: #4CAF50;
+}
+
+.options .bi-emoji-neutral-fill,
+.options .bi-emoji-frown-fill,
+.options .bi-emoji-smile-fill {
+    display: none;
+}
+
+.btn-check:checked+.options {
+    border-color: transparent;
+    box-shadow: var(--bs-box-shadow-sm);
+}
+
+.options:hover .bi-emoji-neutral-fill,
+.options:hover .bi-emoji-frown-fill,
+.options:hover .bi-emoji-smile-fill,
+.btn-check:checked+.options .bi-emoji-neutral-fill,
+.btn-check:checked+.options .bi-emoji-frown-fill,
+.btn-check:checked+.options .bi-emoji-smile-fill {
+    display: block;
+    background-color: #18191f;
+    border-radius: 29px;
+    animation: animate 3s linear infinite;
+    text-shadow: 0 0 50px #0072ff, 0 0 100px #0072ff, 0 0 150px #0072ff,
+        0 0 200px #0072ff;
+}
+
+@keyframes animate {
+    from {
+        filter: hue-rotate(0deg);
+    }
+
+    to {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.options:hover .bi-emoji-neutral,
+.options:hover .bi-emoji-frown,
+.options:hover .bi-emoji-smile,
+.btn-check:checked+.options .bi-emoji-neutral,
+.btn-check:checked+.options .bi-emoji-frown,
+.btn-check:checked+.options .bi-emoji-smile {
+    display: none;
+}
+
+.btn-check:checked+.toggleTheme {
+    border-color: transparent;
+}
+
+.toggleTheme svg {
+    height: 12px;
+    width: 12px;
+}
+
+/* Theme */
+.toggleTheme .bi-moon-fill,
+.btn-check:checked+.toggleTheme .bi-sun-fill {
+    display: none;
+}
+
+.btn-check:checked+.toggleTheme .bi-moon-fill {
+    display: block;
+}
+
+/* Animation */
+#choices {
+    opacity: 0;
+    transition: opacity .5s;
+}
+
+.slide-in {
+    opacity: 1 !important;
+    animation: slide-up 1s;
+}
+
+@keyframes slide-up {
+    0% {
+        /* transform: translateY(30%); */
+        opacity: 0;
+    }
+
+    100% {
+        /* transform: translateY(0%); */
+        opacity: 1;
+    }
+}

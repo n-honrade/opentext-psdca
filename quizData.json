@@ -1,0 +1,75 @@
+{
+    "title": "Professional Skills Discovery: The PSD Career Assessment",
+    "question": [
+        {
+            "id": 1,
+            "description": "I prefer working with a team to accomplish a goal rather than working alone.",
+            "score": [3, 2, 1]
+        },
+        {
+            "id": 2,
+            "description": "I am highly organized and excel at planning and prioritizing tasks.",
+            "score": [3, 2, 1]
+        },
+        {
+            "id": 3,
+            "description": "I enjoy leading and facilitating meetings to drive progress and decision making.",
+            "score": [3, 2, 1]
+        },
+        {
+            "id": 4,
+            "description": "I am skilled at communicating complex technical concepts to non-technical stakeholders.",
+            "score": [3, 2, 1]
+        },
+        {
+            "id": 5,
+            "description": "I am driven by delivering results and meeting deadlines.",
+            "score": [3, 2, 1]
+        },
+        {
+            "id": 6,
+            "description": "I enjoy breaking down complex problems into smaller, manageable tasks.",
+            "score": [1, 2, 3]
+        },
+        {
+            "id": 7,
+            "description": "I have a strong attention to detail and enjoy ensuring that everything is in order.",
+            "score": [1, 2, 3]
+        },
+        {
+            "id": 8,
+            "description": "I enjoy coding and find satisfaction in solving technical problems.",
+            "score": [1, 2, 3]
+        },
+        {
+            "id": 9,
+            "description": "I am comfortable with taking risks and exploring innovative solutions to challenges.",
+            "score": [1, 2, 3]
+        },
+        {
+            "id": 10,
+            "description": "I thrive in fast-paced environments and enjoy juggling multiple tasks simultaneously.",
+            "score": [1, 2, 3]
+        }
+    ],
+    "career": [
+        {
+            "id": 1,
+            "title": "Project Manager",
+            "description": "Congratulations! Your results suggest a strong alignment with the Cloud Services Program Manager role. You excel in leadership, organization, and driving progress within a team-oriented environment.",
+            "range": [23, 30]
+        },
+        {
+            "id": 2,
+            "title": "Software Developer",
+            "description": "Congratulations! Your results suggest a strong alignment with the Consultant role. You possess excellent problem-solving skills, attention to detail, and technical proficiency.",
+            "range": [10, 17]
+        },
+        {
+            "id": 3,
+            "title": "Needs Discussion",
+            "description": "Your results indicate a balanced profile, showcasing qualities that are desirable in both Project Management and Software Development roles. Consider exploring opportunities in both fields to find the best fit for your skills and interests.",
+            "range": [18, 27]
+        }
+    ]
+}
