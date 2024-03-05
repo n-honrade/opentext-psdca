@@ -196,12 +196,19 @@
 
     function setTheme() {
       const theme = localStorage.getItem("prefTheme");
-      htmlElement.setAttribute("data-bs-theme", theme);
-      if (theme == "dark") {
-        themeCheckbox.checked = true;
+      if (theme) {
+        htmlElement.setAttribute("data-bs-theme", theme);
+        if (theme == "dark") {
+          themeCheckbox.checked = true;
+        } else {
+          themeCheckbox.checked = false;
+
+        }
       } else {
-        themeCheckbox.checked = false;
+        htmlElement.setAttribute("data-bs-theme", light);
       }
+
+
     }
 
 
@@ -275,11 +282,7 @@
           currentQuestion++;
           selectedOption.checked = false;
           if (currentQuestion < globalQuizData.question.length) {
-            // nextQuestion();
-            document.getElementById('option1').disabled = true;
-            document.getElementById('option2').disabled = true;
-            document.getElementById('option3').disabled = true;
-            conclusion();
+            nextQuestion();
           } else {
             document.getElementById('option1').disabled = true;
             document.getElementById('option2').disabled = true;
@@ -368,13 +371,13 @@
 
       if (score >= globalQuizData.career[0].range)
 
-      for (let i = 0; i < globalQuizData.career.length; i++) {
-        if (score >= globalQuizData.career[i].range[0] && score <= globalQuizData.career[i].range[1]){
-          document.getElementById("results-title").innerHTML = globalQuizData.career[i].title;
-          document.getElementById("results-desc").innerHTML = globalQuizData.career[i].description;
-          title_flag = true;
+        for (let i = 0; i < globalQuizData.career.length; i++) {
+          if (score >= globalQuizData.career[i].range[0] && score <= globalQuizData.career[i].range[1]) {
+            document.getElementById("results-title").innerHTML = globalQuizData.career[i].title;
+            document.getElementById("results-desc").innerHTML = globalQuizData.career[i].description;
+            title_flag = true;
+          }
         }
-      }
 
       if (title_flag == false) {
         document.getElementById("results-desc").innerHTML = "Please Try Again!";
