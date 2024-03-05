@@ -254,6 +254,7 @@
           }, 1000);
         }
       });
+      conclusion();
     }
 
     function nextQuestion() {
@@ -283,7 +284,7 @@
           selectedOption.checked = false;
           if (currentQuestion < globalQuizData.question.length) {
             nextQuestion();
-            //conclusion();
+            // conclusion();
           } else {
             document.getElementById('option1').disabled = true;
             document.getElementById('option2').disabled = true;
