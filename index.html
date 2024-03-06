@@ -11,14 +11,14 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body onClick="beginTest()">
   <canvas class="container-fluid min-vh-100" id="canvas"></canvas>
   <div class="page-wrapper vh-100">
     <div class="main-content h-100 d-flex align-items-center justify-content-center px-3">
       <div id="home" class="text-center w-75">
         <h3>Professional Skills Discovery</h3>
-        <h1 class="display-1 mb-5">The PSD Career Assessment</h1>
-        <a href="#" onClick="beginTest()" class="btn btn-sm btn-primary">Begin Quiz</a>
+        <h1 class="display-1 fw-bold mb-5">The PSD Career Assessment</h1>
+        <h1 class="display-6 mt-5">Click Anywhere to Start!</h1>
       </div>
 
       <div class="card shadow d-none" id="test" style="width: 720px; min-height:500px;">
@@ -100,7 +100,7 @@
           </div>
         </div>
         <div class="card-footer d-flex justify-content-between">
-          <a href="#" onclick="quitTest()" class="btn btn-secondary icon-link icon-link-hover"
+          <a href="#" onClick="window.location.reload();" class="btn btn-secondary icon-link icon-link-hover"
             style="--bs-icon-link-transform: translate3d(-.25em, 0, 0);">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
               viewBox="0 0 16 16">
@@ -118,16 +118,13 @@
           </a>
         </div>
       </div>
-      <div class="card shadow d-none" id="result" style="width: 720px; min-height:500px;">
-        <div class="card-header d-flex align-items-center justify-content-between">
-
-        </div>
+      <div class="card shadow text-center d-none" id="result" style="width: 720px; min-height:500px;">
         <div class="card-body d-flex flex-column align-items-center justify-content-center">
-          You are a <span id="results-title"></span> <br />
-          <span id="results-desc"></span>
+          <span id="results-title" class="display-1"></span> <br />
+          <span id="results-desc" class="p-4"></span>
         </div>
-        <div class="card-footer d-flex justify-content-between">
-
+        <div class="card-footer">
+          <button class="btn btn-primary" onClick="window.location.reload();">Restart</button>
         </div>
       </div>
     </div>
@@ -170,14 +167,6 @@
         localStorage.setItem("prefTheme", "light");
       }
     });
-
-    function quitTest() {
-      document.getElementById("question").innerHTML = "";
-      document.querySelectorAll(".typed-cursor").forEach(el => el.remove());
-      document.getElementById('choices').style.opacity = 0;
-      document.getElementById("test").classList.add("d-none");
-      document.getElementById("home").classList.remove("d-none");
-    }
 
     function beginTest() {
       fetch('quizData.json')
@@ -223,46 +212,51 @@
 
     function displayQuestion() {
       const questionData = globalQuizData.question;
-
+      score = 0;
       questionTotal.innerHTML = globalQuizData.question.length;
       questionCounter();
 
       shuffleArray(questionData);
-      console.log("Item #" + currentQuestion);
-      console.log(questionData[currentQuestion].id + ": " + questionData[currentQuestion].description);
+      stepDebug();
       const descriptionsArray = questionData.slice(0, 10).map(item => item.description);
-
-      console.log(descriptionsArray);
 
       if (typed) {
         typed.destroy();
       }
       typed = new Typed("#question", {
         strings: descriptionsArray,
-        typeSpeed: 30,
-        backSpeed: 10,
+        typeSpeed: 5,
+        backSpeed: 1,
         loop: false,
         onStringTyped: function () {
           typed.stop();
           setTimeout(function () {
             document.getElementById('choices').style.opacity = 1;
-          }, 1000);
+            document.getElementById('option1').disabled = false;
+            document.getElementById('option2').disabled = false;
+            document.getElementById('option3').disabled = false;
+          });
         },
         onStart: function () {
           setTimeout(function () {
-            document.getElementById('choices').style.opacity = 0;
-          }, 1000);
+            // document.getElementById('choices').style.opacity = 0;
+          });
+          document.getElementById('option1').disabled = true;
+          document.getElementById('option2').disabled = true;
+          document.getElementById('option3').disabled = true;
         }
       });
-      conclusion();
+    }
+
+    function stepDebug() {
+      console.log("Array Item #" + globalQuizData.question[currentQuestion].id + ": " + globalQuizData.question[currentQuestion].description);
+      console.log("Answer point: " + globalQuizData.question[currentQuestion].score);
+      console.log("Current Score: " + score);
     }
 
     function nextQuestion() {
-      console.log("Item #" + currentQuestion);
-      console.log(globalQuizData.question[currentQuestion].id + ": " + globalQuizData.question[currentQuestion].description);
-      questionCounter()
-
-
+      questionCounter();
+      stepDebug();
       typed.start();
     }
 
@@ -284,27 +278,25 @@
           selectedOption.checked = false;
           if (currentQuestion < globalQuizData.question.length) {
             nextQuestion();
-            // conclusion();
           } else {
             document.getElementById('option1').disabled = true;
             document.getElementById('option2').disabled = true;
             document.getElementById('option3').disabled = true;
             conclusion();
-            score = 0;
           }
         }
       }
     }
 
     function conclusion() {
-      console.log("Finished");
-      console.log("total: " + score);
+      console.log("Finished!");
+      console.log("Total Score: " + score);
 
       if (typed) {
         typed.destroy();
       }
       typed = new Typed("#question", {
-        strings: ["Concluding Test...", "Loading...", "Loading.", "Loading...", "Loading.", "Loading...", "Congratu-", "`Error...` ^1000\n `Exiting in 3...` ^1000\n `2...` ^1000\n `1...`"],
+        strings: ["Concluding Test...", "Loading...", "Loading.", "Loading...", "`Get Ready in 3...` ^1000\n `2...` ^1000\n `1...`"],
         typeSpeed: 30,
         backSpeed: 10,
         loop: false,
@@ -317,19 +309,6 @@
         }
       });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     function congrats() {
       const duration = 15 * 1000,
@@ -377,10 +356,15 @@
           document.getElementById("results-desc").innerHTML = globalQuizData.career[i].description;
           title_flag = true;
         }
+        console.log(title_flag);
+        console.log(globalQuizData.career[i].title);
+        console.log("Score Range:" + globalQuizData.career[i].range[0] + "=>" + globalQuizData.career[i].range[1]);
       }
 
       if (title_flag == false) {
-        document.getElementById("results-desc").innerHTML = "Please Try Again!";
+        document.getElementById("results-title").innerHTML = "Please Try Again!";
+        document.getElementById("results-desc").innerHTML = "Our assessment cannot handle your awesomeness! <br/>Please click the Restart Button";
+        console.log("Score out of range...");
       }
 
       document.getElementById("result").classList.remove("d-none");
