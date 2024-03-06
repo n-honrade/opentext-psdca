@@ -55,19 +55,19 @@
     "career": [
         {
             "id": 1,
-            "title": "Project Manager",
+            "title": "Cloud Services Program Manager",
             "description": "Congratulations! Your results suggest a strong alignment with the Cloud Services Program Manager role. You excel in leadership, organization, and driving progress within a team-oriented environment.",
             "range": [23, 30]
         },
         {
             "id": 2,
-            "title": "Software Developer",
+            "title": "Consultant",
             "description": "Congratulations! Your results suggest a strong alignment with the Consultant role. You possess excellent problem-solving skills, attention to detail, and technical proficiency.",
             "range": [10, 17]
         },
         {
             "id": 3,
-            "title": "Needs Discussion",
+            "title": "For Career Discussion",
             "description": "Your results indicate a balanced profile, showcasing qualities that are desirable in both Project Management and Software Development roles. Consider exploring opportunities in both fields to find the best fit for your skills and interests.",
             "range": [18, 22]
         }
